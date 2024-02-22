@@ -14,10 +14,3 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-if __name__=="++main__":
-    try:
-        a=1/0
-
-    except Exception as e:
-        logging.info("Logging have started for the above.")
-        raise CustomException(e,sys)

@@ -1,8 +1,10 @@
 import sys
+from src.logger import logging
+
 def error_message_detail(error, error_detail:sys):
-    error_detail.exc_info()
+    _,_,ecx_tb= error_detail.exc_info()
     file_name=ecx_tb.tb_frame.f_code.co_filename
-    error_message="Error in python script {0}, line number {1}, error message {2} "  file_name,ecx_tb.tb_lineno,str(error)
+    error_message="Error in python script {0}, line number {1}, error message {2} ".format( file_name,ecx_tb.tb_lineno,str(error))
     return error_message
 
 class CustomException(Exception):
@@ -13,4 +15,11 @@ class CustomException(Exception):
     def __str__(self):
         return self.error_message
 
+if __name__=="++main__":
+    try:
+        a=1/0
+
+    except Exception as e:
+        logging.info("Logging have started for the above.")
+        raise CustomException(e,sys)
 
